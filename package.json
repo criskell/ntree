@@ -1,0 +1,16 @@
+{
+  "name": "ntree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/lib.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
