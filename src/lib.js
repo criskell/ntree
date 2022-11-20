@@ -7,6 +7,7 @@ const tree = async (rootDir, options) => {
   const bufferedWriter = new BufferedWriter();
 
   options.write ||= bufferedWriter.write;
+  options.ls ||= ls;
 
   let current = {
     path: rootDir,
@@ -25,7 +26,7 @@ const tree = async (rootDir, options) => {
       const childPaths = await options.ls(current.path);
 
       current.children = childPaths.map((childPath, index) => ({
-        path: childPath,
+        path: path.join(current.path, childPath),
         isLast: index === childPaths.length - 1,
         parent: current,
         children: null,
@@ -44,7 +45,7 @@ const tree = async (rootDir, options) => {
     current = parent?.children.shift();
   }
 
-  return bufferedWriter.buffer;
+  return bufferedWriter.buffer.join("");
 };
 
 const showNode = (write, node) => {

@@ -1,13 +1,15 @@
+const fs = require("node:fs/promises");
+
 class BufferedWriter {
-  buffer = '';
+  buffer = [];
 
   write = (data) => {
-    this.buffer += data;
+    this.buffer.push(data);
   }
 }
 
-const ls = (path) => fs.readdir("/")
-  .catch((err) => err.code === "ENOENT" ? [] : Promise.reject(err));
+const ls = (path) => fs.readdir(path)
+  .catch((err) => (err.code === "ENOENT" || err.code === "ENOTDIR") ? [] : Promise.reject(err));
 
 module.exports = {
   BufferedWriter,
