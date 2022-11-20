@@ -26,7 +26,7 @@ const tree = async (rootDir, options) => {
       const childPaths = await options.ls(current.path);
 
       current.children = childPaths.map((childPath, index) => ({
-        path: path.join(current.path, childPath),
+        path: childPath,
         isLast: index === childPaths.length - 1,
         parent: current,
         children: null,

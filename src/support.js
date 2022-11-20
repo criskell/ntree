@@ -1,4 +1,5 @@
 const fs = require("node:fs/promises");
+const nodePath = require("node:path");
 
 class BufferedWriter {
   buffer = [];
@@ -9,6 +10,7 @@ class BufferedWriter {
 }
 
 const ls = (path) => fs.readdir(path)
+  .then((names) => names.map((name) => nodePath.join(path, name)))
   .catch((err) => (err.code === "ENOENT" || err.code === "ENOTDIR") ? [] : Promise.reject(err));
 
 module.exports = {

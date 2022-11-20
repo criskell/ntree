@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/lib.js",
+  "bin": {
+    "tree": "node bin/tree.js"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch"
